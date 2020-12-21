@@ -9,14 +9,18 @@
     function HOC(WrappedComponent) {
       return class Enhancer extends WrappedComponent {
         render() {
-          // Conditional rendering
-          if (this.props.loggedIn) {
-            const elementTree = super.render();
-            console.log(elementTree)
-            return elementTree;
-          } else {
-            return null;
+          const elementsTree = super.render();
+          let newProps = {};
+          if (elementsTree && elementsTree.type === "div") {
+            newProps = { value: "may the force be with you" };
           }
+          const props = Object.assign({}, elementsTree.props, newProps);
+          const newElementsTree = React.cloneElement(
+            elementsTree,
+            props,
+            elementsTree.props.children
+          );
+          return newElementsTree;
         }
       };
     }
@@ -40,9 +44,9 @@
 
     setTimeout(() => {
       ReactDOM.render(
-      <AppUppercase loggedIn={true}>deen</AppUppercase>,
-      document.getElementById("root")
-    );
-    },2000)
+        <AppUppercase loggedIn={true}>deen</AppUppercase>,
+        document.getElementById("root")
+      );
+    }, 2000);
   </script>
 </body>

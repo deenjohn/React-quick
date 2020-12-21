@@ -9,7 +9,6 @@
     function HOC(WrappedComponent) {
       return class Enhancer extends WrappedComponent {
         render() {
-          // Conditional rendering
           if (this.props.loggedIn) {
             const elementTree = super.render();
             console.log(elementTree)
