@@ -43,7 +43,7 @@ const hero2 = {
 
 console.log(shallowEqual(hero1,hero2))
 
-function deepEqualNew(object1, object2) {
+function deepEqual2(object1, object2) {
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
 
@@ -56,7 +56,7 @@ function deepEqualNew(object1, object2) {
     const val2 = object2[key];
     const areObjects = isObject(val1) && isObject(val2);
     if (
-      areObjects && !deepEqualNew(val1, val2) ||
+      areObjects && !deepEqual(val1, val2) ||
       !areObjects && val1 !== val2
     ) {
       return false;
@@ -69,5 +69,3 @@ function deepEqualNew(object1, object2) {
 function isObject(object) {
   return object != null && typeof object === 'object';
 }
-
-console.log(deepEqualNew(hero1,hero2))
