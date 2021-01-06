@@ -20,8 +20,6 @@
 
     // parent
     let mySet = new Set(); // to check if the callback function is new each it re-renders
-    
-    // props.name is [] and [] !==[] , so React.memo won't work in this case
     const Greeting = React.memo(function Greeting(props) {
       console.log('%c greeting renders!', 'color: green; font-weight: bold;');
       const [name, setName] = React.useState("");
@@ -66,7 +64,7 @@
     function App(props) {
       console.log('%c render App', 'color: Yellow; font-weight: bold;');
       const [count, setCount] = React.useState(0);
-      const nameArr = []; // can memoize this also
+      const nameArr = [];
       return (
         <>
           <button onClick={() => setCount((c) => c + 1)}>{count}</button>
